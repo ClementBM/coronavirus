@@ -1,0 +1,47 @@
+name: Tests
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  tests:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - {name: Linux, python: '3.8', os: ubuntu-latest}
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+      - name: update pip
+        run: |
+          pip install -U wheel
+          pip install -U setuptools
+          python -m pip install -U pip
+      - name: install pipenv
+        run: pip install pipenv
+      - name: install dependencies
+        run: pipenv install --system --deploy --ignore-pipfile
+      - name: install pytest
+        run: pipenv install pytest --dev
+      - name: install package
+        run: pipenv run pip install -e .
+      - name: run tests
+        run: pipenv run coverage run --source='src' -m pytest
+      - name: code coverage report
+        run: pipenv run coverage report
+      - name: Build code coverage html files
+        run: pipenv run coverage html
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v1
+        with:
+          name: code-coverage-report
+          path: htmlcov
