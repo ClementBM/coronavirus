@@ -20,17 +20,16 @@ poetry publish -r testpypi
 
 # Installation
 ```shell
-pip install --index-url https://test.pypi.org/simple/ mypkg128
+pip install --index-url https://test.pypi.org/simple/ coronavirus
 ```
 or
 ```shell
-pip3 install --index-url https://test.pypi.org/simple/ mypkg128
+pip3 install --index-url https://test.pypi.org/simple/ coronavirus
 ```
 
 # Usage
 ```python
-from mypkg128 import main
-main.test()
+from coronavirus import main
 ```
 
 # Code of Conduct

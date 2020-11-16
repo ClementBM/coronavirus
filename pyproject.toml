@@ -1,6 +1,6 @@
 # https://python-poetry.org/docs/pyproject/
 [tool.poetry]
-name = "mypkg128"
+name = "coronavirus"
 version = "0.1.0"
 description = "Basic python repository template"
 authors = ["Clément Brutti-Mairesse <clement.brutti.mairesse@gmail.com>"]
@@ -23,6 +23,9 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
+pandas = "^1.1.4"
+matplotlib = "^3.3.3"
+scipy = "^1.5.4"
 
 [tool.poetry.dev-dependencies]
 pylint = "*"
@@ -35,14 +38,13 @@ black = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
 coverage = "*"
-setuptools = "*"
 wheel = "*"
 twine = "*"
 
 # New scripts
-# After installing the mypackage package, running mypackage will call the main() function from mypackage/__init__.py.
+# After installing the coronavirus package, running coronavirus will call the main() function from coronavirus/__init__.py.
 # [tool.poetry.scripts]
-# mypkg128 = 'mypkg128:main'
+# coronavirus = 'coronavirus:main'
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
