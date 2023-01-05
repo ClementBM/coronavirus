@@ -31,11 +31,9 @@ def scale(df):
 # |         | UK         | FRANCE     |
 # | Pop     | 67 886 004 | 67 848 156 |
 # | Density | 270.7/km2  | 107,2/km2  |
-
 COUNTRY_NAMES = ["United Kingdom", "France"]
 
 df_region, df_national = data_gouv_vaccination()
-
 
 df_vac_uk = pd.read_csv("UK-data_2021-Mar-05.csv")
 df_vac_uk["date"] = pd.to_datetime(df_vac_uk["date"])

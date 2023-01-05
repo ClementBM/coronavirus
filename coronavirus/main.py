@@ -33,7 +33,7 @@ plot_data_by_country(
     ],
     COUNTRY_NAMES,
     rolling_mean_window=7,
-    diff=1,
+    diff=0,
 )
 
 # |         | UK         | FRANCE     |

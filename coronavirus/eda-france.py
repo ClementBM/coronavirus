@@ -81,6 +81,14 @@ plt.grid(True)
 plt.title("Taux d'incidence total +65")
 plt.legend(loc="upper left")
 
+
+df_65.diff().dropna().rolling(window=7).mean().dropna().plot(
+    figsize=(14, 10), x_compat=True
+)
+plt.grid(True)
+plt.legend(loc="upper left")
+
+
 # taux incidence total
 df_0.plot(figsize=(14, 10), x_compat=True)
 plt.grid(True)
@@ -94,12 +102,6 @@ plt.grid(True)
 plt.legend(loc="upper left")
 
 
-df_65.diff().dropna().rolling(window=7).mean().dropna().plot(
-    figsize=(14, 10), x_compat=True
-)
-plt.grid(True)
-plt.legend(loc="upper left")
-
 df_65["Lille"].diff().dropna().rolling(window=7).mean().dropna().plot(
     figsize=(14, 10), x_compat=True
 )
@@ -112,17 +114,24 @@ df_0_reduced = pca_2_components(df_0[-30:])
 df_65_reduced = pca_2_components(df_65)
 
 # Hospitalisation
+weeks = 20
+
 df_hosp[-90:].plot(figsize=(14, 10), x_compat=True)
 plt.grid(True)
 plt.title("Hospitalisations")
 plt.legend(loc="upper left")
+
+df_hosp[-(7 * weeks) :].diff().dropna().rolling(window=14).mean().dropna().plot(
+    figsize=(14, 10), x_compat=True, legend=None
+)
+plt.title("Diff lissé Hospitalisations par département")
+plt.grid(True)
 
 # PCA
 days = 7
 df_hosp_reduced = pca_2_components(df_hosp[-days:])
 
 # Réanimations
-weeks = 20
 df_rea[-(7 * weeks) :].plot(figsize=(14, 10), x_compat=True, legend=None)
 plt.title("Réanimations par département")
 plt.grid(True)
